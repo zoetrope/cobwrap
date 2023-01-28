@@ -2,8 +2,9 @@ package cmd
 
 import (
 	"fmt"
+
 	"github.com/spf13/cobra"
-	"github.com/zoetrope/cobwrap"
+	"github.com/zoetrope/cobwrap/pkg/cobwrap"
 )
 
 type SubOpt struct {

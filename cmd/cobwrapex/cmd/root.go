@@ -1,11 +1,10 @@
 package cmd
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/spf13/cobra"
-	"github.com/zoetrope/cobwrap/pkg/cobwrap"
+	cobwrap "github.com/zoetrope/cobwrap/pkg/cobwrapex"
 )
 
 type RootOpt struct {
@@ -13,15 +12,19 @@ type RootOpt struct {
 	param1 string
 }
 
-func NewCmd() *cobwrap.Command[RootOpt] {
-	cmd := &cobwrap.Command[RootOpt]{
+func (o *RootOpt) Fill(cmd *cobra.Command, args []string) error {
+	o.param1 = "test111"
+	return nil
+}
+
+func (o *RootOpt) Run(cmd *cobra.Command, args []string) error {
+	return nil
+}
+
+func NewCmd() *cobwrap.Command[*RootOpt] {
+	cmd := &cobwrap.Command[*RootOpt]{
 		Command: &cobra.Command{
 			Use: "root",
-		},
-		Fill: func(opt *RootOpt, cmd *cobra.Command, args []string) error {
-			fmt.Println("root.Fill")
-			opt.param1 = "test111"
-			return nil
 		},
 		Options: &RootOpt{},
 	}
